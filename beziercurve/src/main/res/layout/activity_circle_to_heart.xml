@@ -6,4 +6,7 @@
     android:layout_height="match_parent"
     tools:context="shbd.beziercurve.activity.CircleToHeartActivity">
 
+    <shbd.beziercurve.view.CircleToHeartView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>
