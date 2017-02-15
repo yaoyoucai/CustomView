@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="shbd.beziercurve.activity.MainActivity">
+
+    <Button
+        android:id="@+id/btn_quad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="二阶bezier曲线" />
+
+    <Button
+        android:id="@+id/btn_cubi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="三阶bezier曲线" />
+
+    <Button
+        android:id="@+id/btn_circle_to_heart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="圆渐变为心形" />
+
+
+</LinearLayout>

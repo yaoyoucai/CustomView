@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_cubical_bezier"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="shbd.beziercurve.activity.CubicalBezierActivity">
+
+    <shbd.beziercurve.view.CubicBezierView
+        android:id="@+id/cubic_bezier_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RadioGroup
+        android:id="@+id/rg_control"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_left_control"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="左控制点" />
+
+        <RadioButton
+            android:id="@+id/rb_right_control"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="右控制点" />
+    </RadioGroup>
+</RelativeLayout>
