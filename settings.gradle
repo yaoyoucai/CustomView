@@ -1,1 +1,1 @@
-include ':app', ':beziercurve', ':propertyanimation', ':matrix'
+include ':app', ':beziercurve', ':propertyanimation', ':matrix', ':path'
