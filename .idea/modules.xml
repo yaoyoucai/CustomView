@@ -5,13 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/CustomView.iml" filepath="$PROJECT_DIR$/CustomView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/beziercurve/beziercurve.iml" filepath="$PROJECT_DIR$/beziercurve/beziercurve.iml" />
-      <module fileurl="file://$PROJECT_DIR$/beziercurve/beziercurve.iml" filepath="$PROJECT_DIR$/beziercurve/beziercurve.iml" />
-      <module fileurl="file://$PROJECT_DIR$/matrix/matrix.iml" filepath="$PROJECT_DIR$/matrix/matrix.iml" />
       <module fileurl="file://$PROJECT_DIR$/matrix/matrix.iml" filepath="$PROJECT_DIR$/matrix/matrix.iml" />
       <module fileurl="file://$PROJECT_DIR$/path/path.iml" filepath="$PROJECT_DIR$/path/path.iml" />
-      <module fileurl="file://$PROJECT_DIR$/path/path.iml" filepath="$PROJECT_DIR$/path/path.iml" />
       <module fileurl="file://$PROJECT_DIR$/propertyanimation/propertyanimation.iml" filepath="$PROJECT_DIR$/propertyanimation/propertyanimation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/propertyanimation/propertyanimation.iml" filepath="$PROJECT_DIR$/propertyanimation/propertyanimation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zoomimage/zoomimage.iml" filepath="$PROJECT_DIR$/zoomimage/zoomimage.iml" />
       <module fileurl="file://$PROJECT_DIR$/zoomimage/zoomimage.iml" filepath="$PROJECT_DIR$/zoomimage/zoomimage.iml" />
     </modules>
   </component>
