@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
@@ -27,6 +28,15 @@ public class ZoomImageView extends ImageView implements ViewTreeObserver.OnGloba
 
     private ScaleGestureDetector mScaleGestureDetector;
 
+    private int mLastPointCount;
+
+    private float mLastX;
+    private float mLastY;
+
+    private boolean isCanDrag;
+
+    private int scaledTouchSlop;
+
     public ZoomImageView(Context context) {
         this(context, null);
     }
@@ -45,6 +55,8 @@ public class ZoomImageView extends ImageView implements ViewTreeObserver.OnGloba
         mScaleGestureDetector = new ScaleGestureDetector(getContext(), this);
 
         setOnTouchListener(this);
+
+        scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
 
@@ -118,7 +130,7 @@ public class ZoomImageView extends ImageView implements ViewTreeObserver.OnGloba
 
             mScaleMatrix.postScale(scaleFactor, scaleFactor, scaleGestureDetector.getFocusX(), scaleGestureDetector.getFocusY());
 
-            checkBorderAndWidth();
+            checkBorder();
 
             setImageMatrix(mScaleMatrix);
 
@@ -129,41 +141,41 @@ public class ZoomImageView extends ImageView implements ViewTreeObserver.OnGloba
 
 
     /**
-     * 检测并防止在缩放的过程中出现白边
+     * 检测并防止在缩放或移动的过程中出现白边
      */
-    private void checkBorderAndWidth() {
-        float delaX=0f;
-        float delaY=0f;
+    private void checkBorder() {
+        float delaX = 0f;
+        float delaY = 0f;
 
         RectF rect = getMatrixRectF();
 
-        if (rect.width()>=getWidth()){
-            if (rect.right<getWidth()){
-                delaX=getWidth()-rect.right;
+        if (rect.width() >= getWidth()) {
+            if (rect.right < getWidth()) {
+                delaX = getWidth() - rect.right;
             }
-            if (rect.left>0){
-                delaX=-rect.left;
-            }
-        }
-
-        if (rect.height()>=getHeight()){
-            if (rect.bottom<getHeight()){
-                delaY=getHeight()-rect.bottom;
-            }
-             if (rect.top>0){
-                delaY=-rect.top;
+            if (rect.left > 0) {
+                delaX = -rect.left;
             }
         }
 
-        if (rect.width()<getWidth()){
-            delaX=getWidth()/2-rect.right+rect.width()/2;
+        if (rect.height() >= getHeight()) {
+            if (rect.bottom < getHeight()) {
+                delaY = getHeight() - rect.bottom;
+            }
+            if (rect.top > 0) {
+                delaY = -rect.top;
+            }
         }
 
-        if (rect.height()<getHeight()){
-            delaY=getHeight()/2-rect.bottom+rect.height()/2;
+        if (rect.width() < getWidth()) {
+            delaX = getWidth() / 2 - rect.right + rect.width() / 2;
         }
 
-        mScaleMatrix.postTranslate(delaX,delaY);
+        if (rect.height() < getHeight()) {
+            delaY = getHeight() / 2 - rect.bottom + rect.height() / 2;
+        }
+
+        mScaleMatrix.postTranslate(delaX, delaY);
     }
 
     @Override
@@ -178,7 +190,76 @@ public class ZoomImageView extends ImageView implements ViewTreeObserver.OnGloba
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        return mScaleGestureDetector.onTouchEvent(motionEvent);
+        mScaleGestureDetector.onTouchEvent(motionEvent);
+
+        //记录多指触控时中心点的位置
+        float x = 0;
+        float y = 0;
+
+        //得到多指触控的手指数量
+        int pointerCount = motionEvent.getPointerCount();
+
+        for (int i = 0; i < pointerCount; i++) {
+            x += motionEvent.getX(i);
+            y += motionEvent.getY(i);
+        }
+
+        x = x / pointerCount;
+        y = y / pointerCount;
+
+        if (pointerCount != mLastPointCount) {
+            isCanDrag = false;
+            mLastPointCount = pointerCount;
+            mLastX = x;
+            mLastY = y;
+        }
+
+        switch (motionEvent.getAction()) {
+            case MotionEvent.ACTION_MOVE:
+                float dx = x - mLastX;
+                float dy = y - mLastY;
+                if (!isCanDrag) {
+                    isCanDrag = isMoveAction(dx, dy);
+                }
+
+                if (isCanDrag) {
+                    if (getDrawable() != null) {
+                        RectF rect = getMatrixRectF();
+
+                        //当图片宽度小于屏幕宽度，不允许左右移动;
+                        if (rect.width() <= getWidth()) {
+                            dx = 0;
+                        }
+                        //当图片高度小于屏幕高度，不允许上下移动
+                        if (rect.height() <= getHeight()) {
+                            dy = 0;
+                        }
+                        mScaleMatrix.postTranslate(dx, dy);
+                        checkBorder();
+                        setImageMatrix(mScaleMatrix);
+                    }
+                }
+                mLastX = x;
+                mLastY = y;
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                mLastPointCount = 0;
+                break;
+
+        }
+        return true;
+    }
+
+    /**
+     * 判断是否是移动操作
+     *
+     * @param dx
+     * @param dy
+     * @return
+     */
+    private boolean isMoveAction(float dx, float dy) {
+        return Math.sqrt(dx * dx + dy * dy) >= scaledTouchSlop;
     }
 
     public float getScale() {
@@ -188,10 +269,10 @@ public class ZoomImageView extends ImageView implements ViewTreeObserver.OnGloba
     }
 
     public RectF getMatrixRectF() {
-        RectF rectF=null;
+        RectF rectF = null;
         Drawable drawable = getDrawable();
-        if (drawable!=null){
-            rectF=new RectF(0,0,drawable.getIntrinsicWidth(),drawable.getIntrinsicHeight());
+        if (drawable != null) {
+            rectF = new RectF(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
             mScaleMatrix.mapRect(rectF);
         }
         return rectF;
