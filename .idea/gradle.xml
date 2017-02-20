@@ -11,6 +11,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/beziercurve" />
+            <option value="$PROJECT_DIR$/dispatchTouchEventDemo" />
+            <option value="$PROJECT_DIR$/eventdispatcher" />
             <option value="$PROJECT_DIR$/matrix" />
             <option value="$PROJECT_DIR$/path" />
             <option value="$PROJECT_DIR$/propertyanimation" />
