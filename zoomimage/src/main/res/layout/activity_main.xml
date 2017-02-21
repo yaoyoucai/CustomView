@@ -7,11 +7,9 @@
     android:orientation="vertical"
     tools:context="com.example.zoomimage.activity.MainActivity">
 
-    <com.example.zoomimage.view.ZoomImageView
-        android:id="@+id/zmv"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/meizi"
-         />
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
