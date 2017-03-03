@@ -25,5 +25,16 @@
         android:layout_height="wrap_content"
         android:text="圆渐变为心形" />
 
+    <Button
+        android:id="@+id/btn_magic_circle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="圆移动效果" />
+
+    <Button
+        android:id="@+id/btn_qq_red_drag_point"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="圆移动效果" />
 
 </LinearLayout>

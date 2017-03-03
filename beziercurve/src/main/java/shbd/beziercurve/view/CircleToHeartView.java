@@ -43,8 +43,10 @@ public class CircleToHeartView extends View {
     public CircleToHeartView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        mPaint = new Paint();
-        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint=new Paint();
+        mPaint.setColor(0xFFfe626d);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setStrokeWidth(1);
         mPaint.setAntiAlias(true);
 
         for (int i = 0; i < 8; i++) {
@@ -114,15 +116,15 @@ public class CircleToHeartView extends View {
         //绘制bezier曲线
         mPaint.setColor(Color.RED);
         Path path = new Path();
+        path.moveTo(mData[0].x, mData[0].y);
         for (int i = 0, j = 0; i < 4; i++, j += 2) {
-            path.moveTo(mData[i].x, mData[i].y);
             if (i == 3) {
                 path.cubicTo(mCtrl[j].x, mCtrl[j].y, mCtrl[j + 1].x, mCtrl[j + 1].y, mData[0].x, mData[0].y);
             } else {
                 path.cubicTo(mCtrl[j].x, mCtrl[j].y, mCtrl[j + 1].x, mCtrl[j + 1].y, mData[i + 1].x, mData[i + 1].y);
             }
-            canvas.drawPath(path, mPaint);
         }
+        canvas.drawPath(path, mPaint);
 
         mCurrent += mPiece;
         if (mCurrent < mDuration) {
@@ -156,11 +158,11 @@ public class CircleToHeartView extends View {
         mPaint.setStrokeWidth(4);
         //绘制辅助线
         for (int i = 1, j = 1; i <= 3; i++, j += 2) {
-            canvas.drawLine(mData[i].x,mData[i].y,mCtrl[j].x,mCtrl[j].y,mPaint);
-            canvas.drawLine(mData[i].x,mData[i].y,mCtrl[j+1].x,mCtrl[j+1].y,mPaint);
+            canvas.drawLine(mData[i].x, mData[i].y, mCtrl[j].x, mCtrl[j].y, mPaint);
+            canvas.drawLine(mData[i].x, mData[i].y, mCtrl[j + 1].x, mCtrl[j + 1].y, mPaint);
         }
-        canvas.drawLine(mData[0].x,mData[0].y,mCtrl[0].x,mCtrl[0].y,mPaint);
-        canvas.drawLine(mData[0].x,mData[0].y,mCtrl[7].x,mCtrl[7].y,mPaint);
+        canvas.drawLine(mData[0].x, mData[0].y, mCtrl[0].x, mCtrl[0].y, mPaint);
+        canvas.drawLine(mData[0].x, mData[0].y, mCtrl[7].x, mCtrl[7].y, mPaint);
     }
 
     private void drawCoordinateSystem(Canvas canvas) {

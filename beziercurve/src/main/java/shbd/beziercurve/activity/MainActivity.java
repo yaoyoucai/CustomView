@@ -12,6 +12,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mBtnQuad;
     private Button mBtnCubi;
     private Button mBtnCircleToHeart;
+    private Button mBtnMagicCircle;
+    private Button mBtnQqRedDragPoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +23,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnQuad = (Button) findViewById(R.id.btn_cubi);
         mBtnCubi = (Button) findViewById(R.id.btn_quad);
         mBtnCircleToHeart = (Button) findViewById(R.id.btn_circle_to_heart);
+        mBtnMagicCircle = (Button) findViewById(R.id.btn_magic_circle);
+        mBtnQqRedDragPoint= (Button) findViewById(R.id.btn_qq_red_drag_point);
 
         mBtnQuad.setOnClickListener(this);
         mBtnCubi.setOnClickListener(this);
         mBtnCircleToHeart.setOnClickListener(this);
+        mBtnMagicCircle.setOnClickListener(this);
+        mBtnQqRedDragPoint.setOnClickListener(this);
     }
 
     @Override
@@ -39,6 +45,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_circle_to_heart:
                 intent.setClass(this, CircleToHeartActivity.class);
+                break;
+            case R.id.btn_magic_circle:
+                intent.setClass(this, MagicCircleActivity.class);
+                break;
+            case R.id.btn_qq_red_drag_point:
+                intent.setClass(this, RedDragPointActivity.class);
                 break;
         }
         startActivity(intent);
