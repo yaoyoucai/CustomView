@@ -7,6 +7,7 @@
     tools:context="shbd.customview.activity.ActivityA">
 
     <Button
+        android:id="@+id/btn_start"
         android:onClick="start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

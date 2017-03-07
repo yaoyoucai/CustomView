@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.support.v7.view.ContextThemeWrapper;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -68,7 +69,8 @@ public class AddressPickView extends PopupWindow implements PopupWindow.OnDismis
 
 
     private void initPicker() {
-        LayoutInflater inflater = LayoutInflater.from(mActivity.getApplicationContext());
+        ContextThemeWrapper ctx = new ContextThemeWrapper(mActivity.getApplicationContext(), R.style.AppTheme);
+        LayoutInflater inflater = LayoutInflater.from(ctx);
         mView = inflater.inflate(R.layout.address_picker_view, null);
         this.setContentView(mView);
 
