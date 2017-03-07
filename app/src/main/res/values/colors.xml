@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#5363cc</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="cc_dot_orage">#fff08519</color>
+    <color name="cc_dot_dark">#ffdcd3cb</color>
+
+    <color name="txt_color_selected">#ffffff</color>
+    <color name="txt_color_unselected">#d1cfcf</color>
+    <!--导航条颜色-->
+    <color name="guide_bar_bg">#1C9DE0</color>
+    <color name="orange">#FF7900</color>
+    <color name="green">#3BA55D</color>
+    <color name="red">#fe2400</color>
+    <color name="black">#000000</color>
+    <color name="grey">#aaaaaa</color>
+    <color name="bg_page">#ffebebeb</color>
+    <color name="base_bg">#E4E4E4</color>
+    <color name="txt_main_body_color">#89000000</color>
+    <!--主色调颜色-->
+    <color name="main_bg">#1c9de0</color>
+    <!--主色调颜色_加深-->
+    <color name="main_bg_deep">#247eac</color>
+
+    <!--文字标题-->
+    <color name="title_txt_color">#666666</color>
+    <!--段落文本-->
+    <color name="section_txt_color">#888888</color>
+    <!--辅助文字-->
+    <color name="support_txt_color">#cccccc</color>
+    <!--分割线颜色-->
+    <color name="dividers_color">#e5e5e5</color>
+    <!--商品活动选择框颜色_未选中部分-->
+    <color name="half_transparent_unselected">#30000000</color>
+    <!--商品活动选择框颜色_下拉部分-->
+    <color name="half_transparent_spinner">#e0000000</color>
+
+    <color name="title_level2_color">#BD000000</color>
+    <color name="btn_color">#FE2400</color>
+    <color name="btn_disable_color">#848282</color>
+    <color name="btn_disable_color_deep">#716f6f</color>
+    <color name="refuse_color">#FE2400</color>
+    <color name="login_out_bg_select">#3A90CD</color>
+    <color name="login_out_bg_normol">#FFFFFF</color>
+    <color name="login_out_bg_border">#FEB035</color>
+
+
+    <!--下面是评论图片的颜色-->
+    <color name="albumback">#E1E0DE</color>
+    <color name="plugin_camera_black">#000000</color>
+    <color name="none_color">#00000000</color>
+    <color name="order_bg">#028BD3</color>
+
+
 </resources>

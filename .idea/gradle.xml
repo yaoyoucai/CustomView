@@ -9,8 +9,13 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Bind" />
+            <option value="$PROJECT_DIR$/Bind2" />
+            <option value="$PROJECT_DIR$/CollapsingToolbarLayout" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app345" />
             <option value="$PROJECT_DIR$/beziercurve" />
+            <option value="$PROJECT_DIR$/coordinatorlayout" />
             <option value="$PROJECT_DIR$/dispatchTouchEventDemo" />
             <option value="$PROJECT_DIR$/eventdispatcher" />
             <option value="$PROJECT_DIR$/matrix" />

@@ -8,13 +8,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.ActivityA">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>|
+        </activity>
+        |
+        <activity
+            android:name=".activity.ActivityB"
+            android:launchMode="singleInstance" />
+        <activity android:name=".activity.ActivityC" />
+
+        <service
+            android:name=".service.ComputeService"
+            android:process=":remote" />
     </application>
 
 </manifest>

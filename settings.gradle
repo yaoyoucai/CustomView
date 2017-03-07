@@ -1,1 +1,1 @@
-include ':app', ':beziercurve', ':propertyanimation', ':matrix', ':path', ':zoomimage', ':eventdispatcher', ':dispatchTouchEventDemo'
+include ':app', ':beziercurve', ':propertyanimation', ':matrix', ':path', ':zoomimage', ':eventdispatcher', ':dispatchTouchEventDemo', ':coordinatorlayout', ':CollapsingToolbarLayout', ':app345', ':Bind', ':Bind2'

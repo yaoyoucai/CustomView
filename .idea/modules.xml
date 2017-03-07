@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Bind/Bind.iml" filepath="$PROJECT_DIR$/Bind/Bind.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Bind2/Bind2.iml" filepath="$PROJECT_DIR$/Bind2/Bind2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CollapsingToolbarLayout/CollapsingToolbarLayout.iml" filepath="$PROJECT_DIR$/CollapsingToolbarLayout/CollapsingToolbarLayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/CustomView.iml" filepath="$PROJECT_DIR$/CustomView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app345/app345.iml" filepath="$PROJECT_DIR$/app345/app345.iml" />
       <module fileurl="file://$PROJECT_DIR$/beziercurve/beziercurve.iml" filepath="$PROJECT_DIR$/beziercurve/beziercurve.iml" />
+      <module fileurl="file://$PROJECT_DIR$/coordinatorlayout/coordinatorlayout.iml" filepath="$PROJECT_DIR$/coordinatorlayout/coordinatorlayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/dispatchTouchEventDemo/dispatchTouchEventDemo.iml" filepath="$PROJECT_DIR$/dispatchTouchEventDemo/dispatchTouchEventDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/eventdispatcher/eventdispatcher.iml" filepath="$PROJECT_DIR$/eventdispatcher/eventdispatcher.iml" />
       <module fileurl="file://$PROJECT_DIR$/matrix/matrix.iml" filepath="$PROJECT_DIR$/matrix/matrix.iml" />
