@@ -60,7 +60,11 @@ public class FlowLayout extends ViewGroup {
         Button button = new Button(context);
         button.setText(data);
         button.setTextColor(mPieceTextColor);
-        LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        MarginLayoutParams lp = new MarginLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+        lp.leftMargin = 50;
+        lp.rightMargin = 50;
+        lp.topMargin = 50;
+        lp.bottomMargin = 50;
         addView(button, lp);
     }
 
@@ -83,8 +87,9 @@ public class FlowLayout extends ViewGroup {
         mLines.add(line);
         for (int index = 0; index < childCount; index++) {
             View childView = getChildAt(index);
-            int measuredWidth = childView.getMeasuredWidth();
-            if (line.getWidth() + measuredWidth > width_size) {
+            int measuredWidth = childView.getMeasuredWidth() ;
+            int width = width_size - getPaddingLeft() - getPaddingRight();
+            if (line.getWidth() + measuredWidth > width) {
                 line = new Line();
                 line.addView(childView);
                 mLines.add(line);
@@ -95,7 +100,7 @@ public class FlowLayout extends ViewGroup {
 
         //得到整个控件的高度
         if (height_mode == MeasureSpec.AT_MOST) {
-            height_size = 0;
+            height_size = getPaddingTop() + getPaddingBottom();
             for (Line curLine : mLines) {
                 height_size += curLine.getHeight();
             }
@@ -111,17 +116,12 @@ public class FlowLayout extends ViewGroup {
             Line line = mLines.get(index);
             List<View> childViewList = line.getViewList();
 
-            //每两个控件之间的间距
-            int space = 0;
-           /* if (childViewList.size() != 1) {
-                space = (getMeasuredHeight() - getPaddingLeft() - getPaddingRight() - line.getWidth()) / (childViewList.size() - 1);
-            }*/
             int curWidth = getPaddingLeft();
             for (int i = 0; i < childViewList.size(); i++) {
 
                 View childView = childViewList.get(i);
-                childView.layout(curWidth + space * i, curHeight,
-                        curWidth + childView.getMeasuredWidth() + space * i,
+                childView.layout(curWidth, curHeight,
+                        curWidth + childView.getMeasuredWidth(),
                         curHeight + line.getHeight());
 
                 curWidth += childView.getMeasuredWidth();
@@ -135,12 +135,13 @@ public class FlowLayout extends ViewGroup {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         canvas.drawColor(Color.RED);
-        super.dispatchDraw(canvas);}
+        super.dispatchDraw(canvas);
+    }
 
     /**
      * 代表每一行
      */
-   private static class Line {
+    private static class Line {
         private List<View> mViewList;
 
         //行宽和高
@@ -168,5 +169,10 @@ public class FlowLayout extends ViewGroup {
         public int getWidth() {
             return lineWidth;
         }
+    }
+
+    @Override
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new MarginLayoutParams(mContext, attrs);
     }
 }
