@@ -30,9 +30,6 @@ public class FlowLayout extends ViewGroup {
     //块的字体颜色
     private int mPieceTextColor = Color.BLACK;
 
-    //控件最小宽度
-    private int mMinWidth = 200;
-
     public FlowLayout(Context context) {
         this(context, null);
     }
@@ -61,25 +58,21 @@ public class FlowLayout extends ViewGroup {
         button.setText(data);
         button.setTextColor(mPieceTextColor);
         MarginLayoutParams lp = new MarginLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-        lp.leftMargin = 50;
-        lp.rightMargin = 50;
-        lp.topMargin = 50;
-        lp.bottomMargin = 50;
         addView(button, lp);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        measureChildren(widthMeasureSpec, heightMeasureSpec);
-
         int width_mode = MeasureSpec.getMode(widthMeasureSpec);
         int height_mode = MeasureSpec.getMode(heightMeasureSpec);
         int width_size = MeasureSpec.getSize(widthMeasureSpec);
         int height_size = MeasureSpec.getSize(heightMeasureSpec);
 
-        if (width_mode == MeasureSpec.AT_MOST && width_size > mMinWidth) {
-            width_size = mMinWidth;
-        }
+        LayoutParams layoutParams = getLayoutParams();
+        int height = layoutParams.height;
+
+        //当传入的mode为at_most时的宽度
+        int maxWidth = 0;
 
         int childCount = getChildCount();
         Line line = new Line();
@@ -87,14 +80,22 @@ public class FlowLayout extends ViewGroup {
         mLines.add(line);
         for (int index = 0; index < childCount; index++) {
             View childView = getChildAt(index);
-            int measuredWidth = childView.getMeasuredWidth() ;
+            measureChild(childView, widthMeasureSpec, heightMeasureSpec);
+            MarginLayoutParams lp = (MarginLayoutParams) childView.getLayoutParams();
+
+            int childWidth = childView.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
             int width = width_size - getPaddingLeft() - getPaddingRight();
-            if (line.getWidth() + measuredWidth > width) {
+            if (line.getWidth() + childWidth > width) {
+                maxWidth = Math.max(childWidth, line.getWidth());
                 line = new Line();
                 line.addView(childView);
                 mLines.add(line);
             } else {
                 line.addView(childView);
+            }
+
+            if (index == childCount - 1) {
+                maxWidth = Math.max(maxWidth, line.getWidth());
             }
         }
 
@@ -104,6 +105,7 @@ public class FlowLayout extends ViewGroup {
             for (Line curLine : mLines) {
                 height_size += curLine.getHeight();
             }
+            width_size = maxWidth;
         }
         super.onMeasure(MeasureSpec.makeMeasureSpec(width_size, width_mode),
                 MeasureSpec.makeMeasureSpec(height_size, height_mode));
@@ -158,8 +160,9 @@ public class FlowLayout extends ViewGroup {
 
         public void addView(View view) {
             mViewList.add(view);
-            lineWidth += view.getMeasuredWidth();
-            lineHeight = Math.max(lineHeight, view.getMeasuredHeight());
+            MarginLayoutParams lp = (MarginLayoutParams) view.getLayoutParams();
+            lineWidth += view.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+            lineHeight = Math.max(lineHeight, view.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
         }
 
         public int getHeight() {
