@@ -1,0 +1,7 @@
+#Mon Apr 10 14:24:13 CST 2017
+base.0=E\:\\javasoft\\AndroidStudioProjects\\CustomView\\zhy_flowLayout02\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_1db1998c4672f9e5d56ae1dd8af8b6ce74ca2b41
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=E\:\\javasoft\\AndroidStudioProjects\\CustomView\\zhy_flowLayout02\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_aa2cb6fa7ec5c4693c2ae99865567ee1b0a16f8c\\classes.dex
+base.1=E\:\\javasoft\\AndroidStudioProjects\\CustomView\\zhy_flowLayout02\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_aa2cb6fa7ec5c4693c2ae99865567ee1b0a16f8c
+file.0=E\:\\javasoft\\AndroidStudioProjects\\CustomView\\zhy_flowLayout02\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_1db1998c4672f9e5d56ae1dd8af8b6ce74ca2b41\\classes.dex
